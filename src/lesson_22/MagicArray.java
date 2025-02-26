@@ -14,7 +14,14 @@ public class MagicArray {
     }
 
     public MagicArray(int[] array) {
-        //  Todo Homework
+        this.array = new int[array.length];
+
+        for (int i = 0; i < array.length; i++) {
+            this.array[i] = array[i];
+        }
+
+        this.cursor = array.length;
+
     }
 
     // Добавление в массив одного элемента
@@ -151,14 +158,26 @@ public class MagicArray {
     // индекс последнего вхождения
     // {1,100,5,100,24,0,100} -> lastIndexOf(100) -> 6-й
     int lastIndexOf(int value) {
-        // Todo Homework
+
+        for (int i = cursor -1 ; i >= 0 ; i--) {
+            if (array[i] == value) {
+                return i;
+            }
+        }
+
         return -1;
 
     }
 
     // удалить элемент по значению
     boolean removeByValue(int value) {
-        //Todo Homework
+
+        int index = indexOf(value);
+        if (index != -1) {
+            remove(index);
+            return true;
+        }
+
         return false;
     }
 
