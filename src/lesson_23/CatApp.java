@@ -22,7 +22,6 @@ public class CatApp {
         System.out.println("Вес " + cat.getWeight());
         System.out.println("Имя " + cat.getName());
 
-
         cat.setAge(15);
         System.out.println(cat.toString());
 
