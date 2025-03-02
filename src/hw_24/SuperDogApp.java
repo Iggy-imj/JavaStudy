@@ -25,13 +25,27 @@ public class SuperDogApp {
 
 
 
-        System.out.println("\n===   2   ===\n");
+        System.out.println("\n===   3   ===\n");
 
         SuperDog dog3 = new SuperDog("Рекс", 5, 98);
 
         System.out.println(dog3);
 
         dog3.jumpBarrier();
+
+
+
+
+
+        System.out.println("\n===   4   ===\n");
+
+        SuperDog dog4 = new SuperDog("Рекс", 33, 66);
+
+        System.out.println(dog4);
+
+        dog4.jumpBarrier();
+
+
 
 
 

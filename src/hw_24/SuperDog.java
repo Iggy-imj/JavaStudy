@@ -35,12 +35,12 @@ public class SuperDog {
     }
 
     public void train() {
-        if (jumpHeight + 10 <= maxTrainableHeight) {
-            jumpHeight += 10;
-            System.out.println(name + " потренировался.\nТеперь может прыгать на высоту: " + jumpHeight);
-        } else {
+        if (jumpHeight + 10 > maxTrainableHeight) {
             jumpHeight = maxTrainableHeight;
-            System.out.println(name + " достиг максимальной высоты прыжка: " + jumpHeight);
+            System.out.println(name + " достиг максимальной высоты прыжка: " + jumpHeight + " см.");
+        } else {
+            jumpHeight += 10;
+            System.out.println(name + " потренировался. Теперь может прыгать на высоту: " + jumpHeight + " см.");
         }
     }
 
