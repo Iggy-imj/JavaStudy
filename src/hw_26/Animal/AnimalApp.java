@@ -1,4 +1,4 @@
-package hw_26;
+package hw_26.Animal;
 
 public class AnimalApp {
     public static void main(String[] args) {

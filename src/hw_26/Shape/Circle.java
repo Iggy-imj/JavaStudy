@@ -1,4 +1,4 @@
-package hw_26;
+package hw_26.Shape;
 
 public class Circle extends Shape{
     private double radius;

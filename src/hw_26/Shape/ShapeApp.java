@@ -1,4 +1,4 @@
-package hw_26;
+package hw_26.Shape;
 
 public class ShapeApp {
     public static void main(String[] args) {

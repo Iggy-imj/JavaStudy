@@ -1,4 +1,4 @@
-package hw_26;
+package hw_26.Shape;
 
 public class Shape {
     protected String name;

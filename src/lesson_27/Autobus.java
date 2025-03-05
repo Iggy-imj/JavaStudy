@@ -36,14 +36,24 @@ public class Autobus {
         this.passengers = new Passenger[capacity];
     }
 
-    @Override
+//    @Override
+//    public String toString() {
+//        return "Autobus {" +
+//                "id=" + id +
+//                ", driver=" + driver.toString() +
+//                ", autopilot=" + autopilot.toString() +
+//                ", capacity=" + capacity +
+//                '}';
+//    }
+
     public String toString() {
-        return "Autobus {" +
-                "id=" + id +
-                ", driver=" + driver.toString() +
-                ", autopilot=" + autopilot.toString() +
-                ", capacity=" + capacity +
-                '}';
+        StringBuilder sb = new StringBuilder("Autobus {");
+        sb.append("id=").append(id)
+                .append(", driver=").append(driver)
+                .append(",autopilot=").append(autopilot)
+                .append(", capacity=").append(capacity)
+                .append("}");
+        return sb.toString();
     }
 
     public void showListPassengers() {

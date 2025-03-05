@@ -1,4 +1,4 @@
-package hw_26;
+package hw_26.Animal;
 
 public class Dog extends Animal {
     public Dog(String name, int age) {
