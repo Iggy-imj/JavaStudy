@@ -1,13 +1,15 @@
 package hw_27;
 
 public class Computer {
-    private Processor processor;
-    private Memory memory;
+    private final Processor processor;
+    private final Memory memory;
     private Storage storage;
 
-    public Computer(Processor processor, Memory memory, Storage storage) {
-        this.processor = processor;
-        this.memory = memory;
+    public Computer(String cpuBrand, String cpuModel, double frequency,
+                    String ramBrand, String ramModel, int size,
+                    Storage storage) {
+        this.processor = new Processor(cpuBrand, cpuModel, frequency);
+        this.memory = new Memory(ramBrand, ramModel, size);
         this.storage = storage;
     }
 
