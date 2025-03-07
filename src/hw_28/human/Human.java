@@ -1,13 +1,20 @@
 package hw_28.human;
 
 public class Human {
+    protected int speed;
+    protected int restTime;
+
+    public Human(int speed, int restTime) {
+        this.speed = speed;
+        this.restTime = restTime;
+    }
 
     public void run() {
-        System.out.println("Я бегу со скоростью 10км/ч");
+        System.out.println(getClass().getSimpleName() + "бежит со скоростью " + speed + " км/ч");
         rest();
     }
 
     public void rest() {
-        System.out.println("Отдыхаю 15 минут");
+        System.out.println("Отдыхает " + restTime + " минут");
     }
 }

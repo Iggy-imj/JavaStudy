@@ -1,15 +1,9 @@
 package hw_28.human;
 
-public class ProAthlete extends AmateurAthlete{
+public class ProAthlete extends Human{
 
-    @Override
-    public void run() {
-        System.out.println("Я бегу со скоростью 25 км/ч");
-        rest();
-    }
+    public ProAthlete() {
+        super(25,5);
 
-    @Override
-    public void rest() {
-        System.out.println("Отдыхаю 5 минут");
     }
 }

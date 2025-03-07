@@ -2,7 +2,7 @@ package hw_28.human;
 
 public class SportApp {
     public static void main(String[] args) {
-        Human person = new Human();
+        Human person = new Human(10,15);
         AmateurAthlete amateur = new AmateurAthlete();
         ProAthlete pro = new ProAthlete();
 
