@@ -1,4 +1,4 @@
-package lists;
+package hw_31.lists;
 
 public class App {
     public static void main(String[] args) {
