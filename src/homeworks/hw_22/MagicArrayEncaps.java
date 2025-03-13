@@ -1,45 +1,30 @@
-package lists;
+package homeworks.hw_22;
 
-
-
-import java.lang.reflect.Array;
 import java.util.Arrays;
-import java.util.Iterator;
-import java.util.Objects;
 
-/**
- * @author Sergey Bugaenko
- * {@code @date} 11.03.2025
- */
-
-public class MyArrayList<T> implements MyList<T> {
-    private T[] array;
-    private int cursor; // по умолчанию = 0
+public class MagicArrayEncaps {
+    int[] array;
+    int cursor; // по умолчанию = 0
 
     // Методы, расширяющие функционал массива
 
-    @SuppressWarnings("unchecked") // Подавляю предупреждение компилятора о непроверяемом приведении типа
-    public MyArrayList() {
-        // Стирание типов. Невозможно создать объект типа T
-        this.array = (T[]) new Object[10];
-
+    public MagicArrayEncaps() {
+        this.array = new int[10]; // [0, 0...0]
     }
 
-    @SuppressWarnings("unchecked")
-    public MyArrayList(T[] array) {
+    public MagicArrayEncaps(int[] array) {
 
         if (array == null || array.length == 0) {
-            this.array = (T[]) new Object[10];
+            this.array = new int[10];
         } else {
-            this.array = (T[]) new Object[array.length * 2];
-            // (int...numbers) может принять ссылку на массив T[]
-            addAll(array);
+            this.array = new int[array.length * 2];
+            // (int...numbers) может принять ссылку на массив int[]
+            add(array);
         }
     }
 
-    @Override
     // Добавление в массив одного элемента
-    public void add(T value) {
+    void add(int value) {
 
         // Проверка! Есть ли свободное место во внутреннем массиве
         // Если места нет - нужно добавить место
@@ -54,7 +39,7 @@ public class MyArrayList<T> implements MyList<T> {
     }
 
     // Динамическое расширение массива
-    private void expandArray() {
+    void expandArray() {
         System.out.println("Расширяем внутренний массив! Курсор = " + cursor);
         /*
         1. Создать новый массив бОльшего размера (в 2 раза больше)
@@ -65,8 +50,7 @@ public class MyArrayList<T> implements MyList<T> {
         // Shift + Alt + стрелки вверх / вниз | Mac: Shift + Opt + Стрелка
 
         // 1
-        @SuppressWarnings("unchecked")
-        T[] newArray = (T[]) new Object[array.length * 2];
+        int[] newArray = new int[array.length * 2];
 
         // 2
         for (int i = 0; i < cursor; i++) {
@@ -77,9 +61,8 @@ public class MyArrayList<T> implements MyList<T> {
         array = newArray;
     }
 
-    @Override
     // Добавление в массив нескольких элементов
-    public void addAll(T... numbers) {
+    void add(int... numbers) {
         // с numbers я могу обращаться точно также, как со ссылкой на массив int
 //        System.out.println("Принял несколько int: " + numbers.length);
 //        System.out.println(Arrays.toString(numbers));
@@ -92,7 +75,6 @@ public class MyArrayList<T> implements MyList<T> {
     }
 
 
-    @Override
     // Возвращает строковое представление массива
     // [5, 20, 45]
     public String toString() {
@@ -107,25 +89,29 @@ public class MyArrayList<T> implements MyList<T> {
         return result;
     }
 
-    @Override
     // Текущее кол-во элементов в массиве
-    public int size() {
+    int size() {
         return cursor;
     }
 
     // Возвращает значение по индексу
-    public T get(int index) {
+    int get(int index) {
         // Проконтролировать входящий индекс!
 
         if (index >= 0 && index < cursor) {
             return array[index];
         }
 
-        return null;
+        // Fixme Указать место в коде с ошибкой / проблей
+
+        // Код, если индекс не корректный
+        // Хорошего решения нет
+        return -2_147_483_647;
+        // Todo Поправить обработку некорректного индекса
     }
 
     // Удалить элемент по индексу. Вернуть старое значение
-    public T remove(int index) {
+    int remove(int index) {
         /*
         1. Проверка индекса на валидность
         2. Удалить значение по индексу
@@ -135,7 +121,7 @@ public class MyArrayList<T> implements MyList<T> {
 
         if (index >= 0 && index < cursor) {
             // Логика удаления
-            T value = array[index]; // запомнить старое значение
+            int value = array[index]; // запомнить старое значение
 
             // Перебираем элементы начиная с индекса и перезаписываем значением из ячейки справа
             for (int i = index; i < cursor - 1; i++) { // граница перебора индексов
@@ -148,42 +134,21 @@ public class MyArrayList<T> implements MyList<T> {
 
         } else {
             // Индекс не валидный
-            return null;
+            // Todo поправить возвращаемое значение
+            return -2_147_483_647;
         }
-    }
 
-    @Override
-    public boolean isEmpty() {
-        return cursor == 0;
-    }
-
-    @Override
-    public boolean contains(T value) {
-        return indexOf(value) >= 0;
-    }
-
-    // Переписать значение по указанному индексу
-    @Override
-    public void set(int index, T value) {
-        if (index >= 0 && index < cursor) {
-            // Если индекс корректный присваиваем новое значение
-            array[index] = value;
-        }
-        // Если нет - действий не требуется
     }
 
     // Поиск по значению.
     // {1, 100, 5, 24, 0, 5} -> indexOf(5) = 2; indexOf(50) = -1;
-    public int indexOf(T value) {
+    int indexOf(int value) {
         // Перебираю все значимые элементы.
         // Если элемент равен искомому - вернуть индекс такого элемента
         // Если перебрал все элементы =- не нашел совпадений - вернуть -1
 
         for (int i = 0; i < cursor; i++) {
-
-            // null-безопасное сравнение
-            if (Objects.equals(array[i], value)) {
-//            if (array[i].equals(value)) {
+            if (array[i] == value) {
                 // Значения совпали. Возвращаю индекс
                 return i;
             }
@@ -195,11 +160,10 @@ public class MyArrayList<T> implements MyList<T> {
 
     // Индекс последнего вхождения.
     // {1, 100, 5, 100, 24, 0, 100} -> lastIndexOf(100) -> 6
-    public int lastIndexOf(T value) {
+    int lastIndexOf(int value) {
 
-        for (int i = cursor - 1; i >= 0; i--) {
-            if (Objects.equals(array[i], value)) return i;
-//            if (array[i].equals(value)) return i;
+        for (int i = cursor - 1; i >= 0 ; i--) {
+            if (array[i] == value) return i;
         }
 
         return -1;
@@ -217,11 +181,10 @@ public class MyArrayList<T> implements MyList<T> {
 
     }
 
-    @Override
     // Удаление элемента по значению
-    public boolean remove(T value) {
+    boolean removeByValue(int value) {
                /*
-        1. Есть ли элемент с таким значением - indexOf
+        1. Есть ли элемент с  таким значением - indexOf
         2. Если элемента нет - ничего не пытаемся удалить - возвращаем false
         3. Если найден - удалить и затем вернуть true.
          */
@@ -233,34 +196,15 @@ public class MyArrayList<T> implements MyList<T> {
         return true;
     }
 
+    //  // {1, 100, 5, 100, 24, 0, 100}
+//    int[] findAllValues(int value) {
+//       // {1, 3, 6}
+//        return null;
+//    }
 
-    @Override
-    @SuppressWarnings("unchecked")
     // Массив, состоящий из элементов магического массива
-    public T[] toArray() {
-        /*
-        1. Создать массив размерностью cursor (кол-во значимых элементов)
-        2. Пройтись по внутреннему массива и скопировать все элементы в новый (до курсора)
-        3. Вернуть ссылку на новый массив
-         */
-
-//        // TODO здесь будет ошибка
-//        T[] result = (T[]) new Object[cursor];
-////        T[] res = new T[11];  нельзя создать объект
-////        T obj = new T();
-
-        // Взять какой-то объект из моего массива
-        // и узнать с помощью рефлексии тип этого объекта.
-        // Потом я могу создать массив этого типа
-
-        if (cursor == 0) return null;
-
-        Class<T> clazz = (Class<T>) array[0].getClass();
-        System.out.println("clazz: " + clazz);
-
-        // Создаю массив того же типа, что и 0-й элемент.
-        T[] result = (T[]) Array.newInstance(clazz, cursor);
-
+    public int[] toArray() {
+        int[] result = new int[cursor];
         for (int i = 0; i < cursor; i++) {
             result[i] = array[i];
         }
@@ -268,39 +212,12 @@ public class MyArrayList<T> implements MyList<T> {
     }
 
 
-
-    // невозможно вернуть обьект типа Интерфейса.
-    // Если тип возвращаемого значения или параметр метода имеет тип Интерфейс
-    // - это значит что я должен вернуть обьект класса который имплементировал этот интерфейс
-    @Override
-    public Iterator<T> iterator() {
-        return new MyIterator();
-    }
-
-    private class MyIterator implements Iterator<T> {
-
-        int currentIndex = 0;
-
-        @Override
-        public boolean hasNext() {
-            return currentIndex < cursor;
-        }
-
-        @Override
-        public T next() {
-            return array[currentIndex++];
-//            T value = array[currentIndex];
-//            currentIndex++;
-//            return value;
-        }
-    } // End class MyIterator
-
-    public void test() {
+    void test() {
         System.out.println(Arrays.toString(array));
     }
 
 }
-// [5, 20]
+// [5, 20]ч
 
 /*
 1. Добавлять в массив элемент (не думаю об индексах, размере массива) ++

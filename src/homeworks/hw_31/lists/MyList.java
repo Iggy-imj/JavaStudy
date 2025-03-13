@@ -1,6 +1,6 @@
-package lists;
+package homeworks.hw_31.lists;
 
-public interface MyList<T> extends Iterable<T> {
+public interface MyList<T> {
 
 
     /**
