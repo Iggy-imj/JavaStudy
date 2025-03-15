@@ -3,14 +3,14 @@ package homeworks.hw_33.person;
 public class PersonApp {
     public static void main(String[] args) {
 
-        Person person = new Person("test@mail.net", "password");
+        Person person = new Person("test@mailne.t", "qqqwerty1!");
+
+        person.setEmail("test@ma1.1il.net");
 
         System.out.println(person);
 
-
-
-        person.setPassword("jnfjdnjfn*U*U)()(8988");
-        person.setPassword("444");
+        person.setPassword("QWE4RTYqwwe%");
+        System.out.println(person);
 
     }
 }
