@@ -22,6 +22,7 @@ Task 3
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Tasks {
@@ -48,6 +49,7 @@ public class Tasks {
         people.forEach(System.out::println);
 
         List<Person> filteredPeople = people.stream()
+                .filter(Objects::nonNull)
                 .filter(p -> p.getAge() > 25)
                 .filter(p -> "Berlin".equals(p.getCity()))
                 .collect(Collectors.toList());
